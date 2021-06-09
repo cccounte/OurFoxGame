@@ -154,6 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun: {fileID: 418692579546372814, guid: bc1ee5df7049eed4fb4c261502f82d93, type: 3}
   cam: {fileID: 519420031}
+  timeToSpawn: 2
+  canSpawn: 1
 --- !u!4 &135142207
 Transform:
   m_ObjectHideFlags: 0
