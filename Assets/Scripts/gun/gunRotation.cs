@@ -6,7 +6,7 @@ public class gunRotation : MonoBehaviour
 {
     //Components
     public Rigidbody2D rb;
-    public Camera cam;
+    Camera cam;
 
     //Vectors
     Vector2 mousePos;
@@ -14,6 +14,7 @@ public class gunRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        cam = GameObject.Find("MainCam").GetComponent<Camera>();
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     }
     private void FixedUpdate() {
