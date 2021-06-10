@@ -12,7 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-  - player
+  - Player
   - 
   - 
   - 
@@ -45,14 +45,17 @@ TagManager:
   - name: background
     uniqueID: 1832017923
     locked: 0
+  - name: cenario
+    uniqueID: 2727219855
+    locked: 0
   - name: gun
     uniqueID: 248133321
     locked: 0
   - name: player
     uniqueID: 1472299131
     locked: 0
-  - name: cenario
-    uniqueID: 2727219855
+  - name: VFX
+    uniqueID: 1140336399
     locked: 0
   - name: foreground
     uniqueID: 2566359129
