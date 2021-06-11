@@ -7,6 +7,8 @@ using TMPro;
 public class DialogController : MonoBehaviour
 {
     public TextMeshProUGUI textDisplay;
+    public TextMeshProUGUI charaName;
+    public string charName;
     public string[] sentences;
     int index;
     public float typingSpeed;
@@ -14,8 +16,10 @@ public class DialogController : MonoBehaviour
     public GameObject DialogBox;
 
     void Start()
-    {
+    {   
+        charaName.text = charName;
         StartCoroutine(Type());
+
     }
 
     IEnumerator Type(){
@@ -32,7 +36,7 @@ public class DialogController : MonoBehaviour
             StartCoroutine(Type());
         }else{
             textDisplay.text = "";
-            DialogBox.SetActive(false);
+            Destroy(DialogBox);
         }
     }
 }
