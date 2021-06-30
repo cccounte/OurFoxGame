@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float speed;
     Animator anim;
     bool isRunning;
+    float rbVelocityX;
 
 
     //Jumps
@@ -30,24 +31,36 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
+
+    void Update()
+    {
+        Jump();
+        
+    }
+
     void FixedUpdate()
     {
-        //andar
+        walkController();
+
+    }
+    
+
+    void walkController(){
+
         horizontal = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         spriteController();
-
     }
 
     void spriteController(){
-
 
         anim.SetBool("isRunning", isRunning);
         anim.SetFloat("vSpeed", rb.velocity.y);
         anim.SetBool("isGrounded", isGrounded);
 
-         if(horizontal != 0){
+        rbVelocityX = rb.velocity.x;
+
+         if(rbVelocityX != 0){
             tr.localScale = new Vector2(horizontal, tr.localScale.y);
             isRunning = true;
         }else{
@@ -55,17 +68,16 @@ public class Player : MonoBehaviour
         }
 
 
-
-
     }
 
-    void Update(){
-        //pular
+
+    void Jump(){
+
         if(Input.GetButtonDown("Jump") && canJump  == true){
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(rb.velocity.x, jumpForce));
             canJump  = false;
-        }
+        } 
     }
 
     void OnCollisionEnter2D(Collision2D  other){
