@@ -41,6 +41,10 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         walkController();
+        if(rb.velocity.y != 0){
+            canJump = false;
+            isGrounded = false;
+        }
 
     }
     
@@ -86,6 +90,14 @@ public class Player : MonoBehaviour
             isGrounded = true;
         }
     }
+
+    void OnCollisionStay2D(Collision2D other) {
+         if(other.gameObject.tag == "Ground"){
+            canJump = true;
+            isGrounded = true;
+        }
+    }
+
     void OnCollisionExit2D(Collision2D  other){
         if(other.gameObject.tag == "Ground"){
             canJump = false;

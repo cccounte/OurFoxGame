@@ -14,6 +14,7 @@ public class DialogController : MonoBehaviour
     public float typingSpeed;
 
     public GameObject DialogBox;
+    public GameObject FallTrap;
 
     void Start()
     {   
@@ -36,6 +37,7 @@ public class DialogController : MonoBehaviour
             StartCoroutine(Type());
         }else{
             textDisplay.text = "";
+            Destroy(FallTrap);
             Destroy(DialogBox);
         }
     }
