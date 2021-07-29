@@ -33472,6 +33472,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoading
       objectReference: {fileID: 0}
+    - target: {fileID: 6096074139949563237, guid: 7a68fcd87728eb4499b8bb5ea759d646, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8434814533736236279, guid: 7a68fcd87728eb4499b8bb5ea759d646, type: 3}
       propertyPath: nextScene
       value: 1

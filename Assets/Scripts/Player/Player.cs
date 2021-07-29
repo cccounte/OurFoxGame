@@ -34,8 +34,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Jump();
-        
+        Jump();        
     }
 
     void FixedUpdate()
@@ -79,7 +78,7 @@ public class Player : MonoBehaviour
         if(Input.GetButtonDown("Jump") && canJump  == true){
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(rb.velocity.x, jumpForce));
-            canJump  = false;
+            canJump = false;
         } 
     }
 
