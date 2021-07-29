@@ -37,7 +37,8 @@ public class DialogController : MonoBehaviour
             StartCoroutine(Type());
         }else{
             textDisplay.text = "";
-            Destroy(FallTrap);
+            FallTrap.GetComponent<Transform>().position = new Vector2(999, 999);
+            // Destroy(FallTrap);
             Destroy(DialogBox);
         }
     }

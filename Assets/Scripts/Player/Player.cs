@@ -41,11 +41,6 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         walkController();
-        if(rb.velocity.y != 0){
-            canJump = false;
-            isGrounded = false;
-        }
-
     }
     
 
@@ -74,6 +69,10 @@ public class Player : MonoBehaviour
 
     }
 
+    void SetCanJumpAndIsGrounded(bool b){
+        canJump = b;
+        isGrounded = b;
+    }
 
     void Jump(){
 
@@ -86,22 +85,19 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D  other){
         if(other.gameObject.tag == "Ground"){
-            canJump = true;
-            isGrounded = true;
+            SetCanJumpAndIsGrounded(true);
         }
     }
 
     void OnCollisionStay2D(Collision2D other) {
          if(other.gameObject.tag == "Ground"){
-            canJump = true;
-            isGrounded = true;
+            SetCanJumpAndIsGrounded(true);
         }
     }
 
     void OnCollisionExit2D(Collision2D  other){
         if(other.gameObject.tag == "Ground"){
-            canJump = false;
-            isGrounded = false;
+            SetCanJumpAndIsGrounded(false);
         }
     }
 }
