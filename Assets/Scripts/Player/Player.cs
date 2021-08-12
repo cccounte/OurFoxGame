@@ -99,4 +99,12 @@ public class Player : MonoBehaviour
             SetCanJumpAndIsGrounded(false);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Damage")
+        {
+            Debug.Log("Damage");
+        }
+    }
 }

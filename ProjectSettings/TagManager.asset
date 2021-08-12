@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Trap
+  - Damage
   layers:
   - Default
   - TransparentFX
