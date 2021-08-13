@@ -8,12 +8,12 @@ public class Main : MonoBehaviour
     public float speed;
     public float distanceToAttack;
 
-    bool p;
 
     Animator anim;
     Rigidbody2D rb;
     GameObject Gamer;
 
+    Vector3 previous;
 
     void Start()
     {
@@ -23,37 +23,40 @@ public class Main : MonoBehaviour
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        
+        spriteController();
+    }
+
+    //SPRITE CONTROLLER =============================================================
+
+    void spriteController()
+    {
         anim.SetBool("Walking", Walking);
 
-        //g
-        if((transform.position.x - Gamer.transform.position.x) < 0)
-        {
-            transform.localScale = new Vector2(-1, transform.localScale.y);
-        }
-        else
-        {
-            transform.localScale = new Vector2(1, transform.localScale.y);
-        }
+        Vector3 vel = (transform.position - previous) / Time.fixedDeltaTime;
+        previous = transform.position;
+
+        if ((transform.position.x - Gamer.transform.position.x) < 0) flip(-1);
+        else flip(1);
+
+        if (vel.x != 0) Walking = true;
+        else Walking = false;
 
     }
+
+    void flip(int newX)
+    {
+        transform.localScale = new Vector2(newX, transform.localScale.y);
+    }
+
+    //GO TO PLAYER ====================================================================
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
             goToPlayer(collision.gameObject);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        //Mudar depois
-        if(collision.gameObject.tag == "Player")
-        {
-            Walking = false;
         }
     }
 
@@ -67,13 +70,11 @@ public class Main : MonoBehaviour
         if (distance < distanceToAttack)
         {
             anim.SetTrigger("Attack");
-            Walking = false ;
             rb.velocity = new Vector2(0, 0);
         }
         else
         {
             rb.MovePosition(newPos);
-            Walking = true;
         }
     }
 
