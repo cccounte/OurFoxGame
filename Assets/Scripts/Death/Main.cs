@@ -25,27 +25,26 @@ public class Main : MonoBehaviour
 
     void FixedUpdate()
     {
-        spriteController();
+        SpriteController();
     }
 
     //SPRITE CONTROLLER =============================================================
 
-    void spriteController()
+    void SpriteController()
     {
         anim.SetBool("Walking", Walking);
 
         Vector3 vel = (transform.position - previous) / Time.fixedDeltaTime;
         previous = transform.position;
 
-        if ((transform.position.x - Gamer.transform.position.x) < 0) flip(-1);
-        else flip(1);
+        if ((transform.position.x - Gamer.transform.position.x) < 0) Flip(-1);
+        else Flip(1);
 
-        if (vel.x != 0) Walking = true;
-        else Walking = false;
+        Walking = vel.x != 0;
 
     }
 
-    void flip(int newX)
+    void Flip(int newX)
     {
         transform.localScale = new Vector2(newX, transform.localScale.y);
     }
@@ -56,11 +55,11 @@ public class Main : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            goToPlayer(collision.gameObject);
+            GoToPlayer(collision.gameObject);
         }
     }
 
-    void goToPlayer(GameObject player)
+    void GoToPlayer(GameObject player)
     {
         Transform playerTransform = player.transform;
         Vector2 target = new Vector2(playerTransform.position.x, rb.position.y);
@@ -70,7 +69,7 @@ public class Main : MonoBehaviour
         if (distance < distanceToAttack)
         {
             anim.SetTrigger("Attack");
-            rb.velocity = new Vector2(0, 0);
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
         else
         {
